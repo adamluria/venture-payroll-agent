@@ -42,34 +42,34 @@ Rescheduled appointments create new records - original stays with 'rescheduled (
 - [x] Project docs generated
 - [x] Planning memory file created
 
-## Phase 1: Setup
+## Phase 1: Setup ✅ (2026-05-05)
 
 ### Tool Verification (run these first)
-- [ ] Verify Node.js: `node --version` (requires v18+)
-- [ ] Verify npm: `npm --version`
-- [ ] Verify git: `git --version`
-- [ ] Verify Docker: `docker --version`
-- [ ] Verify gcloud: `gcloud --version` (install from https://cloud.google.com/sdk/docs/install if missing)
+- [x] Verify Node.js: v24.14.1 ✓
+- [x] Verify npm: 11.11.0 ✓
+- [x] Verify git: 2.50.1 ✓
+- [ ] Verify Docker: not installed (deferred — `gcloud run deploy --source` builds via Cloud Build)
+- [x] Verify gcloud: 565.0.0 ✓
 
 ### Project Initialization
-- [ ] Extract scaffold zip to `~/Downloads/venture-payroll-agent`
-- [ ] `cd ~/Downloads/venture-payroll-agent && npm install`
-- [ ] Copy `.env.example` → `.env.local` and fill in values
-- [ ] Verify local dev server: `npm run dev`
-- [ ] Initialize git: `git init && git add -A && git commit -m "initial scaffold from Ignition"`
-- [ ] Create GitHub repo and push: `gh repo create venture-payroll-agent --source . --push`
-- [ ] Set up `.auto-memory/` directory and `MEMORY.md` index
-- [ ] Update `.auto-memory/reference_venture-payroll-agent.md` with GitHub URL
+- [x] Extract scaffold zip to `~/Downloads/venture-payroll-agent`
+- [x] `cd ~/Downloads/venture-payroll-agent && npm install` (generated `package-lock.json`)
+- [x] Copy `.env.example` → `.env.local` (placeholders only — keys filled in per-integration in later sessions)
+- [ ] Verify local dev server: `npm run dev` — deferred; deploy succeeded so build is known good
+- [x] Initialize git + initial commit (`b8a8629`)
+- [x] Create GitHub repo and push: https://github.com/adamluria/venture-payroll-agent
+- [x] `.auto-memory/MEMORY.md` index in place
+- [x] Update `.auto-memory/reference_venture-payroll-agent.md` with GitHub URL
 
 ### GCP & Cloud Run
-- [ ] Test Docker build: `docker build -t venture-payroll-agent . && docker run -p 8080:8080 venture-payroll-agent`
-- [ ] Create GCP project: `gcloud projects create venture-payroll-agent --name="venture-payroll-agent"`
-- [ ] Link billing: https://console.cloud.google.com/billing/linkedaccount?project=venture-payroll-agent
-- [ ] Enable APIs: `gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com storage.googleapis.com --project venture-payroll-agent`
-- [ ] Create Artifact Registry: `gcloud artifacts repositories create venture-payroll-agent --repository-format=docker --location=us-east1 --project venture-payroll-agent`
-- [ ] First Cloud Run deploy: `gcloud run deploy venture-payroll-agent --source . --region us-east1 --project venture-payroll-agent --allow-unauthenticated` (use `--update-env-vars`, never `--set-env-vars`)
-- [ ] Update `.auto-memory/reference_venture-payroll-agent.md` with Cloud Run URL + GCP project ID
-- [ ] Write first session file: `docs/memory/YYYY-MM-DD.md`
+- [ ] Test Docker build locally — deferred (Docker not installed)
+- [x] Create GCP project: `venture-payroll-agent`
+- [x] Link billing
+- [x] Enable APIs: run, artifactregistry, cloudbuild
+- [x] Create Artifact Registry: `venture-payroll-agent` in `us-east1`
+- [x] First Cloud Run deploy: https://venture-payroll-agent-343168101156.us-east1.run.app
+- [x] Update `.auto-memory/reference_venture-payroll-agent.md` with Cloud Run URL + GCP project ID
+- [x] Write first session file: `docs/memory/2026-05-05.md`
 
 ### Salesforce Setup
 - [ ] Go to Salesforce Setup → App Manager → New Connected App

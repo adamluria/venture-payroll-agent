@@ -22,4 +22,4 @@ _Updated as components are built._
 
 ## Current State
 
-Phase 0 complete. Phase 1 setup pending.
+Phase 0 complete. Phase 1 setup complete (2026-05-05): repo on GitHub, deployed to Cloud Run, billing live. Ready for Phase 2 (build core prototype with mock data) or Phase 3 (Salesforce Connected App).

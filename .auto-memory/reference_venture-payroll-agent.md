@@ -8,7 +8,7 @@ type: reference
 
 - **GCP project**: `venture-payroll-agent` — confirmed during scaffold config
 - **Cloud Run service**: `venture-payroll-agent` — confirmed during scaffold config
-- **Cloud Run URL**: TBD — set after first deploy
+- **Cloud Run URL**: https://venture-payroll-agent-343168101156.us-east1.run.app — first deploy 2026-05-05
 - **Region**: us-east1
 - **GCS bucket**: TBD
 - **GitHub repo**: https://github.com/adamluria/venture-payroll-agent — created 2026-05-05
