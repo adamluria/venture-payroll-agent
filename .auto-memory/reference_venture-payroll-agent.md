@@ -11,7 +11,7 @@ type: reference
 - **Cloud Run URL**: TBD — set after first deploy
 - **Region**: us-east1
 - **GCS bucket**: TBD
-- **GitHub repo**: TBD — set during Phase 1
+- **GitHub repo**: https://github.com/adamluria/venture-payroll-agent — created 2026-05-05
 - **Local path**: `~/Downloads/venture-payroll-agent`
 
 ## Environment Variables
