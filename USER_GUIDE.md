@@ -77,7 +77,11 @@ Before shipping the product publicly, a final pass on this file should:
 
 - [Getting Started](#getting-started)
 - [Features](#features)
-  - _No features yet — add entries as features ship_
+  - [Dashboard Status Cards](#dashboard-status-cards)
+  - [Weekly Verification Tab](#weekly-verification-tab)
+  - [Monthly Commissions Tab](#monthly-commissions-tab)
+  - [Contest Tracking Tab](#contest-tracking-tab)
+  - [Contest Rules Modal](#contest-rules-modal)
 - [FAQ](#faq)
 - [Support](#support)
 
@@ -85,36 +89,89 @@ Before shipping the product publicly, a final pass on this file should:
 
 ## Getting Started
 
-_Replace this section when the product has a real first-run experience. For now, it's a placeholder._
+To open the Payroll Agent dashboard, navigate to the Cloud Run service URL in your browser. The dashboard loads on the **Weekly Verification** tab by default and pulls data from CoAdvantage, Five9, and Salesforce (or mock data in demo mode). No login is required in the current preview.
 
-To start using **venture-payroll-agent**:
-
-1. [Step one — e.g., "Go to [url]" or "Download and install the app"]
-2. [Step two — sign up, connect a data source, configure something]
-3. [Step three — you're ready to go]
+The interface has three tabs across the top: **Weekly Verification**, **Monthly Commissions**, and **Contest Tracking**. The Bell icon in the header surfaces unread notifications; the **Contest Rules** button opens the contest configuration modal.
 
 ---
 
 ## Features
 
-_As features ship, add a new `###` section here using the template in the "For AI Tools" section above. Keep the newest feature at the top of this list, or organize by category — whichever makes the guide easier to navigate._
+### Dashboard Status Cards
 
-<!-- Example entry — replace with real features as they ship -->
-
-### Example Feature (placeholder — delete when real features exist)
-
-**What it does:** A short description of what this feature is for, from the user's perspective.
+**What it does:** Four at-a-glance cards across the top of the dashboard summarize the current state of payroll: flagged agents needing review, agents with clean timesheets, hours saved by automation this week, and total monthly commissions calculated.
 
 **How to use it:**
-1. Open the app and sign in
-2. Click **Example Feature** in the main navigation
-3. Fill in the form and click **Save**
+1. Open the dashboard — the status cards render automatically
+2. Counts come from the current week (verification) and most recent closed month (commissions)
+3. Each card uses semantic colors: coral for flagged, teal for clean/approved, amber for time saved
 
 **Good to know:**
-- You need to be signed in to use this feature
-- Changes are saved automatically after 30 seconds of inactivity
+- Numbers refresh on every page load (no auto-refresh yet)
+- "Time saved" is a heuristic based on agents that don't need manual review
 
-**Added:** 2026-05-06 · **Last updated:** 2026-05-06
+**Added:** 2026-05-05 · **Last updated:** 2026-05-05
+
+### Weekly Verification Tab
+
+**What it does:** Shows a per-agent breakdown of the current work week (Sun–Sat) with logged hours from CoAdvantage, verified hours after cross-referencing call data from Five9 and Salesforce, calls per hour, and a clean/flagged status.
+
+**How to use it:**
+1. Click the **Weekly Verification** tab in the header
+2. Review the table — flagged agents are highlighted with a coral **FLAGGED** badge plus the specific reason (e.g., "45min gap unusual on Wednesday afternoon")
+3. Clean timesheets get a teal **CLEAN** badge
+
+**Good to know:**
+- Flag thresholds: fewer than 20 calls/hour, or any 15+ minute gap that exceeds the break allowance (30 min per 6 hours worked)
+- The table is sortable by clicking the column header (coming soon)
+- Verified hours can differ from logged hours when call activity doesn't match the clocked time
+
+**Added:** 2026-05-05 · **Last updated:** 2026-05-05
+
+### Monthly Commissions Tab
+
+**What it does:** Calculates monthly commission per agent based on completed appointments and closed-won deals, applies the correct tier rates, layers in active contest bonuses, and shows the total payout.
+
+**How to use it:**
+1. Click the **Monthly Commissions** tab
+2. Each row shows the agent, completed appointments, tier badge, deals, base commission, contest bonus, and total
+3. Tier colors: Tier 1 = coral (lowest), Tier 2 = amber, Tier 3 = teal (highest)
+
+**Good to know:**
+- Commission tiers: Tier 1 (1–19 appointments) = $10/appt + $100/deal; Tier 2 (20–39) = $20/$200; Tier 3 (40+) = $30/$300
+- Closed-won deals are pulled from Salesforce Opportunities tied to each appointment setter
+- Commissions calculate the first Monday of the following month so weekend adjustments are captured
+
+**Added:** 2026-05-05 · **Last updated:** 2026-05-05
+
+### Contest Tracking Tab
+
+**What it does:** Shows current standings for each active monthly contest — Daily Leader, Team Goal Bonus, Shortest Schedule Gap — with the current leader or number of qualified agents.
+
+**How to use it:**
+1. Click the **Contest Tracking** tab
+2. Each contest renders as a card with the prize, eligibility rule, and current leader
+
+**Good to know:**
+- Contest types supported in v1: daily leader, team goal with tier requirement, single-metric monthly winner
+- Schedule gap is measured as time between appointment creation and scheduled datetime in Salesforce
+
+**Added:** 2026-05-05 · **Last updated:** 2026-05-05
+
+### Contest Rules Modal
+
+**What it does:** Opens a panel showing the active contests for the current month. In future versions this will allow editing prize amounts, eligibility rules, and adding new contests directly from the dashboard.
+
+**How to use it:**
+1. Click the **Contest Rules** button in the header (gear icon)
+2. The modal lists every active contest for the month with its prize amount and description
+3. Click **Close** or click outside the modal to dismiss
+
+**Good to know:**
+- Currently read-only — contest rules are defined in mock data for the preview release
+- Editable contest configuration is on the roadmap (TODO Phase 4+)
+
+**Added:** 2026-05-05 · **Last updated:** 2026-05-05
 
 ---
 
