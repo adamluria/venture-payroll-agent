@@ -145,6 +145,45 @@ Rescheduled appointments create new records - original stays with 'rescheduled (
 ## Phase 4: MVP Features
 - [ ] Weekly payroll verification by cross-referencing CoAdvantage timesheets with Five9/Salesforce call data, monthly commission calculations with tier-based structures, and manager dashboard for review and approval of flagged discrepancies.
 
+## Phase 4.5: Mobile Access (post-MVP, before public launch)
+
+Make the dashboard usable on phones so managers (Ben, Joseph, project owner) can review and approve flagged timesheets without sitting at a desk. Sequence is cheap → expensive; only do the next step if the previous one isn't enough.
+
+### 4.5a — Mobile-responsive web (start here)
+- [ ] Audit current dashboard at common phone viewport widths (390px, 414px, 360px)
+- [ ] Make status card grid stack vertically on narrow viewports
+- [ ] Convert tables → card list when viewport is below the breakpoint (Weekly + Monthly + Contest views)
+- [ ] Ensure tap targets are ≥ 44px (badges, buttons, tab bar)
+- [ ] Verify Google Fonts load on mobile data connections; consider self-hosting if slow
+- [ ] Test on actual iOS Safari + Android Chrome
+- [ ] Deploy and share URL with Ben/Joseph for feedback
+
+### 4.5b — Progressive Web App (optional, after 4.5a feedback)
+- [ ] Add `manifest.json` with app name, icons, theme color
+- [ ] Add a minimal service worker for offline shell + asset caching
+- [ ] Add iOS home-screen icon and Apple-specific meta tags
+- [ ] Document "Add to Home Screen" flow in `USER_GUIDE.md`
+- [ ] (Optional) Wire up Web Push for flagged-timesheet alerts in addition to Google Chat — only if managers ask for it
+
+### 4.5c — React Native (only if 4.5a + 4.5b aren't enough)
+
+Trigger conditions for taking this path (do NOT do this unless one of these is true):
+- App-store distribution becomes a hard requirement
+- Native push notifications are needed beyond Google Chat
+- Native-only features (camera, biometrics, etc.) become required
+
+If triggered:
+- [ ] Decide whether to share business logic (tier calc, gap detection) as a package across web + native
+- [ ] Set up Expo or vanilla React Native project
+- [ ] Apple Developer Program enrollment ($99/year) — confirm budget
+- [ ] Google Play Console one-time fee ($25) — confirm budget
+- [ ] Build parity views: Weekly Verification, Monthly Commissions, Contests
+- [ ] App store assets (icons, screenshots, descriptions)
+- [ ] Submit for review (Apple + Google)
+- [ ] Plan for ongoing dual-platform maintenance
+
+**Decision note (2026-05-18):** recommended path is 4.5a → 4.5b. Skip 4.5c unless one of the trigger conditions above becomes real. The audience is < 10 internal managers; native app overhead isn't worth it without a specific reason.
+
 ## Phase 5: MVP Deploy
 - [ ] All env vars confirmed on Cloud Run
 - [ ] Tested with real users in production
